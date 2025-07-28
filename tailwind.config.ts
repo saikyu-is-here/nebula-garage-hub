@@ -61,7 +61,27 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Neon colors for futuristic UI
+				neon: {
+					blue: 'hsl(var(--neon-blue))',
+					purple: 'hsl(var(--neon-purple))',
+					green: 'hsl(var(--neon-green))',
+					orange: 'hsl(var(--neon-orange))',
+					pink: 'hsl(var(--neon-pink))'
 				}
+			},
+			backgroundImage: {
+				'glass-gradient': 'linear-gradient(135deg, hsl(var(--glass-bg)), hsl(var(--card)))',
+			},
+			boxShadow: {
+				'neon-blue': 'var(--glow-primary)',
+				'neon-purple': 'var(--glow-secondary)',
+				'neon-green': 'var(--glow-success)',
+				'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+			},
+			backdropBlur: {
+				'glass': '10px',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +104,36 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'glow': {
+					'0%, 100%': { boxShadow: '0 0 20px hsl(var(--neon-blue) / 0.5)' },
+					'50%': { boxShadow: '0 0 30px hsl(var(--neon-blue) / 0.8)' }
+				},
+				'pulse-neon': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.7' }
+				},
+				'slide-in': {
+					'0%': { transform: 'translateX(-100%)', opacity: '0' },
+					'100%': { transform: 'translateX(0)', opacity: '1' }
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'scale-in': {
+					'0%': { transform: 'scale(0.95)', opacity: '0' },
+					'100%': { transform: 'scale(1)', opacity: '1' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'glow': 'glow 2s ease-in-out infinite',
+				'pulse-neon': 'pulse-neon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+				'slide-in': 'slide-in 0.3s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
+				'scale-in': 'scale-in 0.2s ease-out'
 			}
 		}
 	},
