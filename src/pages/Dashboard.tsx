@@ -157,22 +157,42 @@ const Dashboard = () => {
           </p>
         </CardHeader>
         <CardContent>
-          <div className="h-96 rounded-lg overflow-hidden bg-muted/20 flex items-center justify-center">
-            <div className="text-center text-muted-foreground">
-              <Building2 className="w-16 h-16 mx-auto mb-4 opacity-50" />
-              <h3 className="text-lg font-semibold mb-2">Interactive Map</h3>
-              <p className="text-sm">
-                Garage locations would be displayed here with real map integration
-              </p>
-              <div className="mt-4 space-y-2">
-                {garages.map((garage) => (
-                  <div key={garage.id} className="flex items-center justify-between p-2 bg-background/50 rounded">
-                    <span className="text-sm font-medium">{garage.name}</span>
-                    <span className={`text-xs px-2 py-1 rounded ${
-                      garage.status === 'Active' ? 'bg-neon-green/20 text-neon-green' : 'bg-neon-orange/20 text-neon-orange'
-                    }`}>
-                      {garage.status}
-                    </span>
+          <div className="h-96 rounded-lg overflow-hidden bg-muted/20 relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-background/90 to-background/70 flex items-center justify-center">
+              <div className="grid grid-cols-2 gap-4 w-full max-w-2xl p-6">
+                {garages.map((garage, index) => (
+                  <div 
+                    key={garage.id} 
+                    className={`p-4 rounded-lg border transition-all duration-300 hover:scale-105 cursor-pointer ${
+                      garage.status === 'Active' 
+                        ? 'bg-neon-green/10 border-neon-green/30 hover:bg-neon-green/20' 
+                        : 'bg-neon-orange/10 border-neon-orange/30 hover:bg-neon-orange/20'
+                    }`}
+                    style={{
+                      animationDelay: `${index * 0.1}s`
+                    }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className={`w-3 h-3 rounded-full ${
+                        garage.status === 'Active' ? 'bg-neon-green' : 'bg-neon-orange'
+                      } shadow-lg animate-pulse`} />
+                      <div>
+                        <h4 className="font-semibold text-foreground text-sm">{garage.name}</h4>
+                        <p className="text-xs text-muted-foreground">{garage.location}</p>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className={`text-xs px-2 py-1 rounded-full ${
+                            garage.status === 'Active' 
+                              ? 'bg-neon-green/20 text-neon-green' 
+                              : 'bg-neon-orange/20 text-neon-orange'
+                          }`}>
+                            {garage.status}
+                          </span>
+                          <span className="text-xs text-muted-foreground">
+                            {garage.totalStock} units
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>

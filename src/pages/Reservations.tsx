@@ -106,9 +106,15 @@ const Reservations = () => {
             <Filter className="w-4 h-4 mr-2" />
             Filter by Status
           </Button>
+          <Button 
+            variant="outline"
+            className="border-neon-green/30 text-neon-green hover:bg-neon-green/10"
+          >
+            Active Reservations
+          </Button>
           <Button className="bg-neon-blue hover:bg-neon-blue/80 text-white">
             <Plus className="w-4 h-4 mr-2" />
-            New Reservation
+            Add Reservation
           </Button>
         </div>
       </div>

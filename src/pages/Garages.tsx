@@ -156,13 +156,80 @@ const Garages = () => {
         </Card>
       )}
 
-      {/* Garages Table */}
-      <DataTable
-        title="All Garages"
-        columns={columns}
-        data={garages}
-        actions={actions}
-      />
+      {/* Garages Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {garages.map((garage) => (
+          <Card key={garage.id} className="bg-glass-gradient backdrop-blur-glass border border-border/50 hover:border-neon-blue/30 transition-all duration-300 hover:scale-105">
+            <CardHeader className="pb-3">
+              <div className="w-full h-48 bg-gradient-to-br from-muted/50 to-muted/20 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+                <img 
+                  src={`https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=400&h=200&fit=crop`}
+                  alt={garage.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg font-semibold text-foreground">
+                  {garage.name}
+                </CardTitle>
+                <Badge 
+                  variant={garage.status === "Active" ? "default" : "secondary"}
+                  className={
+                    garage.status === "Active" 
+                      ? "bg-neon-green/20 text-neon-green border-neon-green/30" 
+                      : "bg-neon-orange/20 text-neon-orange border-neon-orange/30"
+                  }
+                >
+                  {garage.status}
+                </Badge>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <MapPin className="w-4 h-4" />
+                <span>{garage.location}</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Phone className="w-4 h-4" />
+                <span>{garage.phone}</span>
+              </div>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">Stock:</span>
+                <span className="font-mono text-neon-blue">{garage.totalStock} units</span>
+              </div>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">Manager:</span>
+                <span className="text-foreground">{garage.manager}</span>
+              </div>
+              <div className="flex items-center gap-2 pt-3">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setSelectedGarage(garage)}
+                  className="flex-1 hover:bg-neon-blue/10 hover:text-neon-blue"
+                >
+                  <Eye className="w-4 h-4 mr-2" />
+                  View
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="hover:bg-neon-purple/10 hover:text-neon-purple"
+                >
+                  <Edit className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="hover:bg-destructive/10 hover:text-destructive"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 };

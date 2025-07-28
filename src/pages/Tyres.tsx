@@ -143,10 +143,18 @@ const Tyres = () => {
             Manage tyre inventory and stock levels across all garages
           </p>
         </div>
-        <Button className="bg-neon-blue hover:bg-neon-blue/80 text-white">
-          <Plus className="w-4 h-4 mr-2" />
-          Add Tyre
-        </Button>
+        <div className="flex gap-2">
+          <Button 
+            variant="outline"
+            className="border-neon-green/30 text-neon-green hover:bg-neon-green/10"
+          >
+            Active Stock
+          </Button>
+          <Button className="bg-neon-blue hover:bg-neon-blue/80 text-white">
+            <Plus className="w-4 h-4 mr-2" />
+            Add Tyres
+          </Button>
+        </div>
       </div>
 
       {/* Stock Alerts */}
