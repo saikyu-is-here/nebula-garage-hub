@@ -77,7 +77,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={
                 <DashboardLayout user={currentUser} onShowProfile={handleShowProfile}>
-                  <Dashboard />
+                  <Dashboard user={currentUser} />
                 </DashboardLayout>
               } />
               <Route path="/garages" element={

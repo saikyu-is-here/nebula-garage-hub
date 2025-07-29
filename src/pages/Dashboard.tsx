@@ -21,7 +21,11 @@ import {
 } from "recharts";
 import { dashboardKPIs, reservationTrends, stockDistribution, garages } from "@/data/mockData";
 
-const Dashboard = () => {
+interface DashboardProps {
+  user?: any;
+}
+
+const Dashboard = ({ user }: DashboardProps) => {
 
   return (
     <div className="space-y-6 animate-fade-in">
@@ -36,7 +40,7 @@ const Dashboard = () => {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+      <div className={`grid grid-cols-1 md:grid-cols-2 ${user?.role === 'manager' ? 'lg:grid-cols-3' : 'lg:grid-cols-5'} gap-6`}>
         <KPICard
           title="Reservations Today"
           value={dashboardKPIs.totalReservationsToday}
@@ -61,12 +65,14 @@ const Dashboard = () => {
           icon={<Clock className="w-5 h-5 text-neon-orange" />}
           accentColor="orange"
         />
-        <KPICard
-          title="Total Garages"
-          value={dashboardKPIs.totalGarages}
-          icon={<Building2 className="w-5 h-5 text-neon-purple" />}
-          accentColor="purple"
-        />
+        {user?.role !== 'manager' && (
+          <KPICard
+            title="Total Garages"
+            value={dashboardKPIs.totalGarages}
+            icon={<Building2 className="w-5 h-5 text-neon-purple" />}
+            accentColor="purple"
+          />
+        )}
         <KPICard
           title="Stock Alerts"
           value={dashboardKPIs.stockAlerts}
@@ -146,60 +152,62 @@ const Dashboard = () => {
         </Card>
       </div>
 
-      {/* Map Section */}
-      <Card className="bg-glass-gradient backdrop-blur-glass border border-border/50">
-        <CardHeader>
-          <CardTitle className="text-xl font-semibold text-foreground">
-            Garage Locations
-          </CardTitle>
-          <p className="text-muted-foreground">
-            Active garages are shown in green, maintenance in orange
-          </p>
-        </CardHeader>
-        <CardContent>
-          <div className="h-96 rounded-lg overflow-hidden bg-muted/20 relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-background/90 to-background/70 flex items-center justify-center">
-              <div className="grid grid-cols-2 gap-4 w-full max-w-2xl p-6">
-                {garages.map((garage, index) => (
-                  <div 
-                    key={garage.id} 
-                    className={`p-4 rounded-lg border transition-all duration-300 hover:scale-105 cursor-pointer ${
-                      garage.status === 'Active' 
-                        ? 'bg-neon-green/10 border-neon-green/30 hover:bg-neon-green/20' 
-                        : 'bg-neon-orange/10 border-neon-orange/30 hover:bg-neon-orange/20'
-                    }`}
-                    style={{
-                      animationDelay: `${index * 0.1}s`
-                    }}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className={`w-3 h-3 rounded-full ${
-                        garage.status === 'Active' ? 'bg-neon-green' : 'bg-neon-orange'
-                      } shadow-lg animate-pulse`} />
-                      <div>
-                        <h4 className="font-semibold text-foreground text-sm">{garage.name}</h4>
-                        <p className="text-xs text-muted-foreground">{garage.location}</p>
-                        <div className="flex items-center gap-2 mt-1">
-                          <span className={`text-xs px-2 py-1 rounded-full ${
-                            garage.status === 'Active' 
-                              ? 'bg-neon-green/20 text-neon-green' 
-                              : 'bg-neon-orange/20 text-neon-orange'
-                          }`}>
-                            {garage.status}
-                          </span>
-                          <span className="text-xs text-muted-foreground">
-                            {garage.totalStock} units
-                          </span>
+      {/* Map Section - Hidden for managers */}
+      {user?.role !== 'manager' && (
+        <Card className="bg-glass-gradient backdrop-blur-glass border border-border/50">
+          <CardHeader>
+            <CardTitle className="text-xl font-semibold text-foreground">
+              Garage Locations
+            </CardTitle>
+            <p className="text-muted-foreground">
+              Active garages are shown in green, maintenance in orange
+            </p>
+          </CardHeader>
+          <CardContent>
+            <div className="h-96 rounded-lg overflow-hidden bg-muted/20 relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-background/90 to-background/70 flex items-center justify-center">
+                <div className="grid grid-cols-2 gap-4 w-full max-w-2xl p-6">
+                  {garages.map((garage, index) => (
+                    <div 
+                      key={garage.id} 
+                      className={`p-4 rounded-lg border transition-all duration-300 hover:scale-105 cursor-pointer ${
+                        garage.status === 'Active' 
+                          ? 'bg-neon-green/10 border-neon-green/30 hover:bg-neon-green/20' 
+                          : 'bg-neon-orange/10 border-neon-orange/30 hover:bg-neon-orange/20'
+                      }`}
+                      style={{
+                        animationDelay: `${index * 0.1}s`
+                      }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`w-3 h-3 rounded-full ${
+                          garage.status === 'Active' ? 'bg-neon-green' : 'bg-neon-orange'
+                        } shadow-lg animate-pulse`} />
+                        <div>
+                          <h4 className="font-semibold text-foreground text-sm">{garage.name}</h4>
+                          <p className="text-xs text-muted-foreground">{garage.location}</p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <span className={`text-xs px-2 py-1 rounded-full ${
+                              garage.status === 'Active' 
+                                ? 'bg-neon-green/20 text-neon-green' 
+                                : 'bg-neon-orange/20 text-neon-orange'
+                            }`}>
+                              {garage.status}
+                            </span>
+                            <span className="text-xs text-muted-foreground">
+                              {garage.totalStock} units
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 };

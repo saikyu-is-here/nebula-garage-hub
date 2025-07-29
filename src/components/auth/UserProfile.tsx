@@ -83,6 +83,43 @@ export function UserProfile({ user, onLogout }: UserProfileProps) {
         </CardContent>
       </Card>
 
+      {/* Stock Distribution Bar Chart */}
+      <Card className="border-accent/20 bg-card/50 backdrop-blur-sm">
+        <CardHeader>
+          <CardTitle>Stock Distribution</CardTitle>
+          <CardDescription>Tyre categories in your garage</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-foreground">Summer Tyres</span>
+              <span className="text-sm text-muted-foreground">45%</span>
+            </div>
+            <div className="w-full bg-muted rounded-full h-2">
+              <div className="bg-neon-blue h-2 rounded-full" style={{ width: '45%' }}></div>
+            </div>
+          </div>
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-foreground">Winter Tyres</span>
+              <span className="text-sm text-muted-foreground">30%</span>
+            </div>
+            <div className="w-full bg-muted rounded-full h-2">
+              <div className="bg-neon-green h-2 rounded-full" style={{ width: '30%' }}></div>
+            </div>
+          </div>
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-foreground">All-Season</span>
+              <span className="text-sm text-muted-foreground">25%</span>
+            </div>
+            <div className="w-full bg-muted rounded-full h-2">
+              <div className="bg-neon-orange h-2 rounded-full" style={{ width: '25%' }}></div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       <Card className="border-accent/20 bg-card/50 backdrop-blur-sm">
         <CardHeader>
           <CardTitle>Manager Actions</CardTitle>
@@ -94,7 +131,7 @@ export function UserProfile({ user, onLogout }: UserProfileProps) {
           </Button>
           <Button className="w-full justify-start" variant="outline">
             <Users className="w-4 h-4 mr-2" />
-            View Reservations
+            View Clients
           </Button>
           <Button className="w-full justify-start" variant="outline">
             <Settings className="w-4 h-4 mr-2" />

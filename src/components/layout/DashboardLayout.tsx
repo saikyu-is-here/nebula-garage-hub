@@ -16,7 +16,7 @@ export function DashboardLayout({ children, user, onShowProfile }: DashboardLayo
     <div className="min-h-screen bg-background text-foreground">
       <SidebarProvider>
         <div className="flex min-h-screen w-full">
-          <AppSidebar />
+          <AppSidebar user={user} />
           <div className="flex-1 flex flex-col">
             <TopBar user={user} onShowProfile={onShowProfile} />
             <main className="flex-1 p-6 space-y-6 animate-fade-in">

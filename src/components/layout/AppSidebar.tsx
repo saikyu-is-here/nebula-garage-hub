@@ -24,23 +24,31 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-const navItems = [
-  { title: "Dashboard", url: "/", icon: LayoutDashboard },
-  { title: "Garages", url: "/garages", icon: Building2 },
-  { title: "Users", url: "/users", icon: Users },
-  { title: "Tyres & Stock", url: "/tyres", icon: Wrench },
-  { title: "Reservations", url: "/reservations", icon: Calendar },
-  { title: "Vehicles", url: "/vehicles", icon: Car },
-  { title: "Garage Hours", url: "/hours", icon: Clock },
-  { title: "Notifications", url: "/notifications", icon: Bell },
-  { title: "Stock Alerts", url: "/alerts", icon: AlertTriangle },
-  { title: "Settings", url: "/settings", icon: Settings },
+const allNavItems = [
+  { title: "Dashboard", url: "/", icon: LayoutDashboard, roles: ["admin", "manager", "client"] },
+  { title: "Garages", url: "/garages", icon: Building2, roles: ["admin"] },
+  { title: "Users", url: "/users", icon: Users, roles: ["admin"] },
+  { title: "Tyres & Stock", url: "/tyres", icon: Wrench, roles: ["admin", "manager"] },
+  { title: "Reservations", url: "/reservations", icon: Calendar, roles: ["admin", "manager", "client"] },
+  { title: "Vehicles", url: "/vehicles", icon: Car, roles: ["admin", "client"] },
+  { title: "Garage Hours", url: "/hours", icon: Clock, roles: ["admin", "manager"] },
+  { title: "Notifications", url: "/notifications", icon: Bell, roles: ["admin", "manager", "client"] },
+  { title: "Stock Alerts", url: "/alerts", icon: AlertTriangle, roles: ["admin", "manager"] },
+  { title: "Settings", url: "/settings", icon: Settings, roles: ["admin", "manager", "client"] },
 ];
 
-export function AppSidebar() {
+interface AppSidebarProps {
+  user?: any;
+}
+
+export function AppSidebar({ user }: AppSidebarProps) {
   const { state } = useSidebar();
   const location = useLocation();
   const currentPath = location.pathname;
+
+  const navItems = allNavItems.filter(item => 
+    user?.role ? item.roles.includes(user.role) : true
+  );
 
   const isActive = (path: string) => currentPath === path;
 
