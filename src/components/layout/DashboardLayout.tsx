@@ -5,9 +5,11 @@ import { TopBar } from "@/components/layout/TopBar";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
+  user?: any;
+  onShowProfile?: () => void;
 }
 
-export function DashboardLayout({ children }: DashboardLayoutProps) {
+export function DashboardLayout({ children, user, onShowProfile }: DashboardLayoutProps) {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -16,7 +18,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <div className="flex min-h-screen w-full">
           <AppSidebar />
           <div className="flex-1 flex flex-col">
-            <TopBar />
+            <TopBar user={user} onShowProfile={onShowProfile} />
             <main className="flex-1 p-6 space-y-6 animate-fade-in">
               {children}
             </main>

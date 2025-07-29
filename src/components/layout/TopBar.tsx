@@ -14,7 +14,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 
-export function TopBar() {
+interface TopBarProps {
+  user?: any;
+  onShowProfile?: () => void;
+}
+
+export function TopBar({ user, onShowProfile }: TopBarProps = {}) {
   const [isDark, setIsDark] = useState(true);
   const [searchValue, setSearchValue] = useState("");
 
@@ -103,21 +108,21 @@ export function TopBar() {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex items-center gap-2 hover:bg-accent">
                 <Avatar className="w-8 h-8">
-                  <AvatarImage src="/placeholder-avatar.jpg" />
+                  <AvatarImage src={user?.profile?.avatar || "/placeholder-avatar.jpg"} />
                   <AvatarFallback className="bg-neon-blue text-background">
-                    AD
+                    {user?.name?.split(' ').map((n: string) => n[0]).join('') || 'U'}
                   </AvatarFallback>
                 </Avatar>
                 <div className="hidden md:flex flex-col items-start">
-                  <span className="text-sm font-medium">Admin User</span>
-                  <span className="text-xs text-muted-foreground">admin@garageos.com</span>
+                  <span className="text-sm font-medium">{user?.name || 'User'}</span>
+                  <span className="text-xs text-muted-foreground">{user?.email || 'user@example.com'}</span>
                 </div>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={onShowProfile}>
                 <User className="w-4 h-4 mr-2" />
                 Profile
               </DropdownMenuItem>
