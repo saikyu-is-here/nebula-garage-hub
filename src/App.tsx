@@ -10,6 +10,7 @@ import UserProfile from "@/components/auth/UserProfile";
 import Dashboard from "./pages/Dashboard";
 import Garages from "./pages/Garages";
 import Users from "./pages/Users";
+import Clients from "./pages/Clients";
 import Tyres from "./pages/Tyres";
 import Reservations from "./pages/Reservations";
 import Vehicles from "./pages/Vehicles";
@@ -89,7 +90,12 @@ const App = () => {
                 <DashboardLayout user={currentUser} onShowProfile={handleShowProfile}>
                   <Users />
                 </DashboardLayout>
-              } />
+               } />
+               <Route path="/clients" element={
+                 <DashboardLayout user={currentUser} onShowProfile={handleShowProfile}>
+                   <Clients user={currentUser} />
+                 </DashboardLayout>
+               } />
               <Route path="/tyres" element={
                 <DashboardLayout user={currentUser} onShowProfile={handleShowProfile}>
                   <Tyres />
