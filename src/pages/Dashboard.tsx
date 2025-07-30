@@ -15,11 +15,10 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
+  BarChart,
+  Bar,
 } from "recharts";
-import { dashboardKPIs, reservationTrends, stockDistribution, garages } from "@/data/mockData";
+import { dashboardKPIs, reservationTrends, stockDistribution, garages, reservations } from "@/data/mockData";
 
 interface DashboardProps {
   user?: any;
@@ -83,6 +82,51 @@ const Dashboard = ({ user }: DashboardProps) => {
         />
       </div>
 
+      {/* Latest Reservations */}
+      <Card className="bg-glass-gradient backdrop-blur-glass border border-border/50">
+        <CardHeader>
+          <CardTitle className="text-xl font-semibold text-foreground">
+            Latest Reservations
+          </CardTitle>
+          <p className="text-muted-foreground">
+            Recent customer reservations
+          </p>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {reservations.slice(0, 5).map((reservation, index) => (
+              <div key={index} className="flex items-center justify-between p-3 rounded-lg bg-muted/20 border border-border/30">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3">
+                    <div className="flex flex-col">
+                      <span className="font-medium text-foreground">{reservation.customer}</span>
+                      <span className="text-sm text-muted-foreground">{reservation.garage}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col items-end">
+                  <span className="text-sm font-medium text-foreground">
+                    {reservation.tyre}
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-muted-foreground">Qty: {reservation.quantity}</span>
+                    <span className={`text-xs px-2 py-1 rounded-full ${
+                      reservation.status === 'Confirmed' 
+                        ? 'bg-neon-green/20 text-neon-green' 
+                        : reservation.status === 'Pending'
+                        ? 'bg-neon-orange/20 text-neon-orange'
+                        : 'bg-neon-blue/20 text-neon-blue'
+                    }`}>
+                      {reservation.status}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Reservation Trends */}
@@ -125,28 +169,36 @@ const Dashboard = ({ user }: DashboardProps) => {
         <Card className="bg-glass-gradient backdrop-blur-glass border border-border/50">
           <CardHeader>
             <CardTitle className="text-xl font-semibold text-foreground">
-              Stock Distribution
+              Stock Distribution by Category
             </CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={stockDistribution}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                  outerRadius={80}
-                  fill="#8884d8"
-                  dataKey="value"
-                >
-                  {stockDistribution.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
+              <BarChart data={stockDistribution} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                <XAxis 
+                  dataKey="name" 
+                  stroke="hsl(var(--muted-foreground))"
+                  fontSize={12}
+                />
+                <YAxis 
+                  stroke="hsl(var(--muted-foreground))"
+                  fontSize={12}
+                />
+                <Tooltip 
+                  contentStyle={{
+                    backgroundColor: 'hsl(var(--background))',
+                    border: '1px solid hsl(var(--border))',
+                    borderRadius: '8px'
+                  }}
+                  formatter={(value) => [value, 'Quantity']}
+                />
+                <Bar 
+                  dataKey="value" 
+                  fill="hsl(var(--neon-blue))"
+                  radius={[4, 4, 0, 0]}
+                />
+              </BarChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
