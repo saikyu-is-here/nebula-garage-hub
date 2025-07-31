@@ -10,7 +10,7 @@ const Reservations = () => {
       key: "customer",
       label: "Customer",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <span className="font-semibold text-foreground">{value}</span>
       ),
     },
@@ -23,7 +23,7 @@ const Reservations = () => {
       key: "tyre",
       label: "Tyre",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <span className="font-mono text-neon-blue">{value}</span>
       ),
     },
@@ -31,7 +31,7 @@ const Reservations = () => {
       key: "quantity",
       label: "Quantity",
       sortable: true,
-      render: (value: number) => (
+      render: (value) => (
         <span className="font-mono text-foreground">{value} units</span>
       ),
     },
@@ -39,7 +39,7 @@ const Reservations = () => {
       key: "date",
       label: "Date",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <div className="flex items-center gap-2">
           <Calendar className="w-4 h-4 text-muted-foreground" />
           <span className="text-muted-foreground">{value}</span>
@@ -50,14 +50,14 @@ const Reservations = () => {
       key: "status",
       label: "Status",
       sortable: true,
-      render: (value: string) => {
+      render: (value) => {
         const colors = {
           Pending: "bg-neon-orange/20 text-neon-orange border-neon-orange/30",
           Confirmed: "bg-neon-blue/20 text-neon-blue border-neon-blue/30",
           Completed: "bg-neon-green/20 text-neon-green border-neon-green/30",
         };
         return (
-          <Badge variant="outline" className={colors[value as keyof typeof colors]}>
+          <Badge variant="outline" className={colors[value]}>
             {value}
           </Badge>
         );
@@ -65,7 +65,7 @@ const Reservations = () => {
     },
   ];
 
-  const actions = (row: any) => (
+  const actions = (row) => (
     <div className="flex items-center gap-2">
       <Button
         variant="ghost"

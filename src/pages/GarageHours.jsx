@@ -10,7 +10,7 @@ const GarageHours = () => {
       key: "garage",
       label: "Garage",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <span className="font-semibold text-foreground">{value}</span>
       ),
     },
@@ -18,7 +18,7 @@ const GarageHours = () => {
       key: "day",
       label: "Day",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <Badge variant="outline" className="bg-neon-blue/20 text-neon-blue border-neon-blue/30">
           {value}
         </Badge>
@@ -28,7 +28,7 @@ const GarageHours = () => {
       key: "openTime",
       label: "Open Time",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <div className="flex items-center gap-2">
           <Clock className="w-4 h-4 text-neon-green" />
           <span className="font-mono text-neon-green">{value}</span>
@@ -39,7 +39,7 @@ const GarageHours = () => {
       key: "closeTime",
       label: "Close Time",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <div className="flex items-center gap-2">
           <Clock className="w-4 h-4 text-neon-orange" />
           <span className="font-mono text-neon-orange">{value}</span>
@@ -48,7 +48,7 @@ const GarageHours = () => {
     },
   ];
 
-  const actions = (row: any) => (
+  const actions = (row) => (
     <div className="flex items-center gap-2">
       <Button
         variant="ghost"

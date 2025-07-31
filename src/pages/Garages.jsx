@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { garages } from "@/data/mockData";
 
 const Garages = () => {
-  const [selectedGarage, setSelectedGarage] = useState<any>(null);
+  const [selectedGarage, setSelectedGarage] = useState(null);
 
   const columns = [
     {
@@ -19,7 +19,7 @@ const Garages = () => {
       key: "location",
       label: "Location",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <div className="flex items-center gap-2">
           <MapPin className="w-4 h-4 text-muted-foreground" />
           <span className="text-sm">{value}</span>
@@ -30,7 +30,7 @@ const Garages = () => {
       key: "status",
       label: "Status",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <Badge 
           variant={value === "Active" ? "default" : "secondary"}
           className={
@@ -47,7 +47,7 @@ const Garages = () => {
       key: "totalStock",
       label: "Total Stock",
       sortable: true,
-      render: (value: number) => (
+      render: (value) => (
         <span className="font-mono text-neon-blue">{value} units</span>
       ),
     },
@@ -58,7 +58,7 @@ const Garages = () => {
     },
   ];
 
-  const actions = (row: any) => (
+  const actions = (row) => (
     <div className="flex items-center gap-2">
       <Button
         variant="ghost"

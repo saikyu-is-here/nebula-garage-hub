@@ -10,7 +10,7 @@ const Notifications = () => {
       key: "title",
       label: "Title",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <span className="font-semibold text-foreground">{value}</span>
       ),
     },
@@ -18,7 +18,7 @@ const Notifications = () => {
       key: "message",
       label: "Message",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <span className="text-muted-foreground">{value}</span>
       ),
     },
@@ -26,7 +26,7 @@ const Notifications = () => {
       key: "status",
       label: "Status",
       sortable: true,
-      render: (value: string) => {
+      render: (value) => {
         const isRead = value === "Read";
         return (
           <Badge 
@@ -51,13 +51,13 @@ const Notifications = () => {
       key: "timestamp",
       label: "Time",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <span className="font-mono text-muted-foreground text-sm">{value}</span>
       ),
     },
   ];
 
-  const actions = (row: any) => (
+  const actions = (row) => (
     <div className="flex items-center gap-2">
       <Button
         variant="ghost"
