@@ -13,22 +13,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 
-interface Column {
-  key: string;
-  label: string;
-  sortable?: boolean;
-  render?: (value: any, row: any) => React.ReactNode;
-}
-
-interface DataTableProps {
-  title: string;
-  columns: Column[];
-  data: any[];
-  searchable?: boolean;
-  filterable?: boolean;
-  actions?: (row: any) => React.ReactNode;
-  className?: string;
-}
+// Column and DataTableProps interfaces removed for JavaScript
 
 export function DataTable({
   title,
@@ -38,12 +23,12 @@ export function DataTable({
   filterable = true,
   actions,
   className = ''
-}: DataTableProps) {
-  const [sortColumn, setSortColumn] = useState<string | null>(null);
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+}) {
+  const [sortColumn, setSortColumn] = useState(null);
+  const [sortDirection, setSortDirection] = useState('asc');
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleSort = (columnKey: string) => {
+  const handleSort = (columnKey) => {
     if (sortColumn === columnKey) {
       setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
     } else {

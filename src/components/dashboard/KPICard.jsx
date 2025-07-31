@@ -1,15 +1,7 @@
 import { TrendingUp, TrendingDown } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-interface KPICardProps {
-  title: string;
-  value: string | number;
-  change?: number;
-  icon: React.ReactNode;
-  trend?: 'up' | 'down' | 'neutral';
-  className?: string;
-  accentColor?: 'blue' | 'purple' | 'green' | 'orange' | 'pink';
-}
+// KPICardProps interface removed for JavaScript
 
 export function KPICard({
   title,
@@ -19,7 +11,7 @@ export function KPICard({
   trend = 'neutral',
   className = '',
   accentColor = 'blue'
-}: KPICardProps) {
+}) {
   const getTrendColor = () => {
     switch (trend) {
       case 'up':
