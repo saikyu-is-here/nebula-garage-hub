@@ -5,12 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { vehicles, reservations } from "@/data/mockData";
 
-interface ClientProfileProps {
-  client: any;
-  onBack: () => void;
-}
+// ClientProfileProps interface removed for JavaScript
 
-const ClientProfile = ({ client, onBack }: ClientProfileProps) => {
+const ClientProfile = ({ client, onBack }) => {
   // Get client's vehicles and reservation history
   const clientVehicles = vehicles.filter(v => v.owner === client.name);
   const clientReservations = reservations.filter(r => r.customer === client.name);
@@ -41,7 +38,7 @@ const ClientProfile = ({ client, onBack }: ClientProfileProps) => {
             <CardTitle className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-full bg-neon-blue/20 flex items-center justify-center">
                 <span className="text-neon-blue font-semibold">
-                  {client.name.split(' ').map((n: string) => n[0]).join('')}
+                  {client.name.split(' ').map((n) => n[0]).join('')}
                 </span>
               </div>
               {client.name}

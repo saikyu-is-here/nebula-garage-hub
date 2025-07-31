@@ -5,9 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
-interface LoginPageProps {
-  onLogin: (user: any) => void;
-}
+// LoginPageProps interface removed for JavaScript
 
 // Demo credentials
 const demoCredentials = [
@@ -50,13 +48,13 @@ const demoCredentials = [
   }
 ];
 
-export function LoginPage({ onLogin }: LoginPageProps) {
+export function LoginPage({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
@@ -77,7 +75,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
     setLoading(false);
   };
 
-  const handleDemoLogin = (credentials: typeof demoCredentials[0]) => {
+  const handleDemoLogin = (credentials) => {
     setEmail(credentials.email);
     setPassword(credentials.password);
     onLogin(credentials);

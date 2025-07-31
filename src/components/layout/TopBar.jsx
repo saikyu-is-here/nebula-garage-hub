@@ -14,12 +14,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 
-interface TopBarProps {
-  user?: any;
-  onShowProfile?: () => void;
-}
+// TopBarProps interface removed for JavaScript
 
-export function TopBar({ user, onShowProfile }: TopBarProps = {}) {
+export function TopBar({ user, onShowProfile } = {}) {
   const [isDark, setIsDark] = useState(true);
   const [searchValue, setSearchValue] = useState("");
 
@@ -110,7 +107,7 @@ export function TopBar({ user, onShowProfile }: TopBarProps = {}) {
                 <Avatar className="w-8 h-8">
                   <AvatarImage src={user?.profile?.avatar || "/placeholder-avatar.jpg"} />
                   <AvatarFallback className="bg-neon-blue text-background">
-                    {user?.name?.split(' ').map((n: string) => n[0]).join('') || 'U'}
+                    {user?.name?.split(' ').map((n) => n[0]).join('') || 'U'}
                   </AvatarFallback>
                 </Avatar>
                 <div className="hidden md:flex flex-col items-start">

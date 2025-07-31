@@ -39,11 +39,9 @@ const allNavItems = [
   { title: "Settings", url: "/settings", icon: Settings, roles: ["admin", "manager", "client"] },
 ];
 
-interface AppSidebarProps {
-  user?: any;
-}
+// AppSidebarProps interface removed for JavaScript
 
-export function AppSidebar({ user }: AppSidebarProps) {
+export function AppSidebar({ user }) {
   const { state } = useSidebar();
   const location = useLocation();
   const currentPath = location.pathname;
@@ -52,7 +50,7 @@ export function AppSidebar({ user }: AppSidebarProps) {
     user?.role ? item.roles.includes(user.role) : true
   );
 
-  const isActive = (path: string) => currentPath === path;
+  const isActive = (path) => currentPath === path;
 
   return (
     <Sidebar className="border-r border-sidebar-border bg-sidebar">

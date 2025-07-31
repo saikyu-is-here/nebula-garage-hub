@@ -3,13 +3,9 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/AppSidebar";
 import { TopBar } from "@/components/layout/TopBar";
 
-interface DashboardLayoutProps {
-  children: React.ReactNode;
-  user?: any;
-  onShowProfile?: () => void;
-}
+// DashboardLayoutProps interface removed for JavaScript
 
-export function DashboardLayout({ children, user, onShowProfile }: DashboardLayoutProps) {
+export function DashboardLayout({ children, user, onShowProfile }) {
   const [collapsed, setCollapsed] = useState(false);
 
   return (

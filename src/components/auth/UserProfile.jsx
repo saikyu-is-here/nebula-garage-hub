@@ -7,19 +7,16 @@ import { LogOut, Users, Package, BarChart3, Settings, Eye, Calendar, MapPin } fr
 import { dashboardKPIs, stockDistribution, garages, users } from "@/data/mockData";
 import ClientProfile from "./ClientProfile";
 
-interface UserProfileProps {
-  user: any;
-  onLogout: () => void;
-}
+// UserProfileProps interface removed for JavaScript
 
-const UserProfile = ({ user, onLogout }: UserProfileProps) => {
+const UserProfile = ({ user, onLogout }) => {
   const [showClientProfile, setShowClientProfile] = useState(false);
   const [selectedClient, setSelectedClient] = useState(null);
 
   // Get clients for this garage (users with role 'Client' from the same garage)
   const garageClients = users.filter(u => u.role === 'Client' && u.garage === user.garage);
 
-  const getRoleColor = (role: string) => {
+  const getRoleColor = (role) => {
     switch (role) {
       case "Admin": return "bg-neon-purple/20 text-neon-purple border-neon-purple/30";
       case "Manager": return "bg-neon-blue/20 text-neon-blue border-neon-blue/30";
@@ -164,7 +161,7 @@ const UserProfile = ({ user, onLogout }: UserProfileProps) => {
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-neon-blue/20 flex items-center justify-center">
                         <span className="text-neon-blue font-semibold">
-                          {client.name.split(' ').map((n: string) => n[0]).join('')}
+                          {client.name.split(' ').map((n) => n[0]).join('')}
                         </span>
                       </div>
                       <div>
@@ -265,7 +262,7 @@ const UserProfile = ({ user, onLogout }: UserProfileProps) => {
           <div className="flex items-center gap-4">
             <Avatar className="w-16 h-16 border-2 border-neon-blue/30">
               <AvatarFallback className="bg-neon-blue/20 text-neon-blue text-lg font-semibold">
-                {user.name.split(' ').map((n: string) => n[0]).join('')}
+                {user.name.split(' ').map((n) => n[0]).join('')}
               </AvatarFallback>
             </Avatar>
             <div>

@@ -20,11 +20,9 @@ import {
 } from "recharts";
 import { dashboardKPIs, reservationTrends, stockDistribution, garages, reservations } from "@/data/mockData";
 
-interface DashboardProps {
-  user?: any;
-}
+// DashboardProps interface removed for JavaScript
 
-const Dashboard = ({ user }: DashboardProps) => {
+const Dashboard = ({ user }) => {
 
   return (
     <div className="space-y-6 animate-fade-in">
