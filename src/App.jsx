@@ -23,10 +23,10 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [currentUser, setCurrentUser] = useState(null);
   const [showProfile, setShowProfile] = useState(false);
 
-  const handleLogin = (user: any) => {
+  const handleLogin = (user) => {
     setCurrentUser(user);
     setShowProfile(false);
   };
