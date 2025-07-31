@@ -10,7 +10,7 @@ const StockAlerts = () => {
       key: "garage",
       label: "Garage",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <span className="font-semibold text-foreground">{value}</span>
       ),
     },
@@ -18,7 +18,7 @@ const StockAlerts = () => {
       key: "tyre",
       label: "Tyre",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <span className="font-mono text-neon-blue">{value}</span>
       ),
     },
@@ -26,7 +26,7 @@ const StockAlerts = () => {
       key: "currentQuantity",
       label: "Current Stock",
       sortable: true,
-      render: (value: number) => (
+      render: (value) => (
         <div className="flex items-center gap-2">
           <Package className="w-4 h-4 text-muted-foreground" />
           <span className={`font-mono ${value === 0 ? 'text-destructive' : 'text-neon-orange'}`}>
@@ -39,7 +39,7 @@ const StockAlerts = () => {
       key: "alertType",
       label: "Alert Type",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <Badge 
           variant="outline"
           className={
@@ -57,7 +57,7 @@ const StockAlerts = () => {
       key: "urgency",
       label: "Urgency",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <Badge 
           variant="outline"
           className={
@@ -72,7 +72,7 @@ const StockAlerts = () => {
     },
   ];
 
-  const actions = (row: any) => (
+  const actions = (row) => (
     <div className="flex items-center gap-2">
       <Button
         variant="ghost"

@@ -9,7 +9,7 @@ const Vehicles = () => {
       key: "make",
       label: "Make",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <span className="font-semibold text-foreground">{value}</span>
       ),
     },
@@ -22,7 +22,7 @@ const Vehicles = () => {
       key: "year",
       label: "Year",
       sortable: true,
-      render: (value: number) => (
+      render: (value) => (
         <span className="font-mono text-neon-blue">{value}</span>
       ),
     },
@@ -30,7 +30,7 @@ const Vehicles = () => {
       key: "plate",
       label: "License Plate",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <span className="font-mono bg-neon-purple/10 text-neon-purple px-2 py-1 rounded">
           {value}
         </span>
@@ -45,13 +45,13 @@ const Vehicles = () => {
       key: "tyreSize",
       label: "Tyre Size",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <span className="font-mono text-muted-foreground">{value}</span>
       ),
     },
   ];
 
-  const actions = (row: any) => (
+  const actions = (row) => (
     <div className="flex items-center gap-2">
       <Button
         variant="ghost"

@@ -15,7 +15,7 @@ const Users = () => {
       key: "email",
       label: "Email",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <span className="text-neon-blue">{value}</span>
       ),
     },
@@ -23,7 +23,7 @@ const Users = () => {
       key: "phone",
       label: "Phone",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <span className="font-mono text-muted-foreground">{value}</span>
       ),
     },
@@ -31,7 +31,7 @@ const Users = () => {
       key: "role",
       label: "Role",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <Badge 
           variant="outline"
           className={
@@ -53,7 +53,7 @@ const Users = () => {
       key: "status",
       label: "Status",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <Badge 
           variant={value === "Active" ? "default" : "secondary"}
           className="bg-neon-green/20 text-neon-green border-neon-green/30"
@@ -64,7 +64,7 @@ const Users = () => {
     },
   ];
 
-  const actions = (row: any) => (
+  const actions = (row) => (
     <div className="flex items-center gap-2">
       <Button
         variant="ghost"

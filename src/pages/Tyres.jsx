@@ -11,7 +11,7 @@ const Tyres = () => {
       key: "brand",
       label: "Brand",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <span className="font-semibold text-foreground">{value}</span>
       ),
     },
@@ -19,7 +19,7 @@ const Tyres = () => {
       key: "size",
       label: "Size",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <span className="font-mono text-neon-blue bg-neon-blue/10 px-2 py-1 rounded">
           {value}
         </span>
@@ -29,7 +29,7 @@ const Tyres = () => {
       key: "category",
       label: "Category",
       sortable: true,
-      render: (value: string) => {
+      render: (value) => {
         const colors = {
           Summer: "bg-neon-orange/20 text-neon-orange border-neon-orange/30",
           Winter: "bg-neon-blue/20 text-neon-blue border-neon-blue/30",
@@ -37,7 +37,7 @@ const Tyres = () => {
           Performance: "bg-neon-purple/20 text-neon-purple border-neon-purple/30",
         };
         return (
-          <Badge variant="outline" className={colors[value as keyof typeof colors]}>
+          <Badge variant="outline" className={colors[value]}>
             {value}
           </Badge>
         );
@@ -47,7 +47,7 @@ const Tyres = () => {
       key: "price",
       label: "Price",
       sortable: true,
-      render: (value: number) => (
+      render: (value) => (
         <span className="font-mono text-neon-green">${value}</span>
       ),
     },
@@ -55,7 +55,7 @@ const Tyres = () => {
       key: "totalStock",
       label: "Total Stock",
       sortable: true,
-      render: (value: number) => (
+      render: (value) => (
         <div className="flex items-center gap-2">
           <Package className="w-4 h-4 text-muted-foreground" />
           <span className={`font-mono ${value < 10 ? 'text-destructive' : 'text-foreground'}`}>
@@ -67,7 +67,7 @@ const Tyres = () => {
     },
   ];
 
-  const actions = (row: any) => (
+  const actions = (row) => (
     <div className="flex items-center gap-2">
       <Button
         variant="ghost"
@@ -108,7 +108,7 @@ const Tyres = () => {
       key: "currentQuantity",
       label: "Current Stock",
       sortable: true,
-      render: (value: number) => (
+      render: (value) => (
         <span className={`font-mono ${value === 0 ? 'text-destructive' : 'text-neon-orange'}`}>
           {value} units
         </span>
@@ -118,7 +118,7 @@ const Tyres = () => {
       key: "alertType",
       label: "Alert Type",
       sortable: true,
-      render: (value: string) => (
+      render: (value) => (
         <Badge 
           variant="outline"
           className={
